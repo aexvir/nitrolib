@@ -14,9 +14,11 @@ type Width = {|
 
 const Popup = styled.div`
   position: absolute;
+  display: flex;
+  flex-direction: column;
   top: 50px;
+  background: ${({ theme }: ThemeProps) => theme.orbit.paletteWhite};
   min-width: ${({ width }: Width) => width || `550px`};
-  background: ${({ theme }: ThemeProps) => theme.orbit.paletteCloudLight};
   color: ${({ theme }: ThemeProps) => theme.orbit.paletteInkNormal};
   border-radius: ${({ theme }: ThemeProps) => theme.orbit.borderRadiusNormal};
   cursor: default;
@@ -35,6 +37,7 @@ const Popup = styled.div`
     left: 0;
     font-size: ${({ theme }: ThemeProps) => theme.orbit.fontSizeTextNormal};
     min-width: 100%;
+    width: 100%;
   `)};
 `;
 

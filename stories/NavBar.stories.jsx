@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 import NavBar from "../src/components/NavBar";
 import HeaderLinks from "../src/components/HeaderLinks";
+import Starred from "../src/components/Starred";
 import withData from "./decorators/withData";
 
 storiesOf("NavBar", module)
@@ -23,7 +24,7 @@ storiesOf("NavBar", module)
       subscription={<h1>Subscription</h1>}
       debug={<h1>Debug</h1>}
       portal=""
-      starred={<span>Starred</span>}
+      starred={<Starred positionMenuDesktop={150} positionMenuTablet={0} />}
       onOpenFaq={action("Open FAQ")}
       onSetModal={action("Set modal")}
       onLogoClick={action("Click logo")}

@@ -6,6 +6,7 @@ exports[`#Starred render closed 1`] = `
     display="block"
   >
     <ForwardRef
+      color="secondary"
       onClick={[MockFunction]}
       theme={
         Object {
@@ -392,8 +393,10 @@ exports[`#Starred render closed 1`] = `
         }
       }
     >
-      <Text
+      <Translate
+        html={false}
         t="starred.starred"
+        values={Object {}}
       />
     </ForwardRef>
   </Desktop>
@@ -401,6 +404,7 @@ exports[`#Starred render closed 1`] = `
     display="block"
   >
     <ForwardRef
+      color="secondary"
       onClick={[MockFunction]}
       theme={
         Object {
@@ -801,12 +805,27 @@ exports[`#Starred render open 1`] = `
     active={true}
     onClickOutside={[MockFunction]}
   >
-    starred
+    <TripContainer
+      footer={false}
+      header={
+        <StarredHeader
+          onClearStorage={[Function]}
+          tripsCount={0}
+        />
+      }
+    >
+      <StarredList
+        onRemove={[Function]}
+        trips={Array []}
+        tripsCount={0}
+      />
+    </TripContainer>
   </ClickOutside>
   <Desktop
     display="block"
   >
     <ForwardRef
+      color="secondary"
       onClick={[MockFunction]}
       theme={
         Object {
@@ -1193,8 +1212,10 @@ exports[`#Starred render open 1`] = `
         }
       }
     >
-      <Text
+      <Translate
+        html={false}
         t="starred.starred"
+        values={Object {}}
       />
     </ForwardRef>
   </Desktop>
@@ -1202,6 +1223,7 @@ exports[`#Starred render open 1`] = `
     display="block"
   >
     <ForwardRef
+      color="secondary"
       onClick={[MockFunction]}
       theme={
         Object {

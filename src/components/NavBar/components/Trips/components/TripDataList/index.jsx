@@ -9,6 +9,7 @@ import Translate from "../../../../../Translate";
 import TripHeader from "../TripHeader";
 import TripList from "../TripList";
 import TripContainer from "../../../../../TripsContainer";
+import TripListBottom from "../TripListBottom";
 
 type Props = {|
   onSelect: (bid: string) => void,
@@ -26,8 +27,9 @@ const TripDataList = ({ env, onSelect }: Props) => (
     query={graphql`
       query TripDataListQuery {
         customerBookings {
+          ...TripHeader_list
           ...TripList_list
-          ...TripHeader_trips
+          ...TripListBottom_list
         }
       }
     `}
@@ -68,7 +70,8 @@ const TripDataList = ({ env, onSelect }: Props) => (
 
       return (
         <TripContainer
-          header={<TripHeader trips={customerBookings} />}
+          header={<TripHeader list={customerBookings} />}
+          footer={<TripListBottom list={customerBookings} />}
           positionMenuTablet={0}
           positionMenuDesktop={50}
         >

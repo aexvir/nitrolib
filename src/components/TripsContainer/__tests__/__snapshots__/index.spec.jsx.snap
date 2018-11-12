@@ -390,5 +390,6 @@ exports[`#TripsContainer render 1`] = `
   <Content>
     <Children />
   </Content>
+  <Footer />
 </Popup>
 `;

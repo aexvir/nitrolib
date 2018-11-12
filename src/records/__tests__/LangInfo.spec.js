@@ -1,5 +1,5 @@
 // @flow
-import { fixDateFormat } from "../LangInfo";
+import { fixDateFormat, fixTimeFormat } from "../LangInfo";
 
 describe("#fixFormat eee", () => {
   test("Should change ddd to eee", () => {
@@ -26,5 +26,12 @@ describe("#fixFormat DD", () => {
   test("Should change DD to dd", () => {
     const date = "DD DDD DD DD DDDD";
     expect(fixDateFormat(date)).toEqual("dd DDD dd dd DDDD");
+  });
+});
+
+describe("#fixTimeFormat", () => {
+  test("Should change LT to p", () => {
+    const date = "LT";
+    expect(fixTimeFormat(date)).toEqual("p");
   });
 });

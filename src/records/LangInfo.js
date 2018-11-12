@@ -105,3 +105,8 @@ export const fixDateFormat = (date: string) => {
   const rep = /\b(ddd)\b/g;
   return date.replace(re, match => match.toLowerCase()).replace(rep, "eee");
 };
+
+export const fixTimeFormat = (time: string) => {
+  const re = /\b(LT)\b/g;
+  return time.replace(re, "p");
+};

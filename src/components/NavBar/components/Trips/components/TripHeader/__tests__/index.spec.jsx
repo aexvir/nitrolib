@@ -16,7 +16,7 @@ const trips: any = {
 
 describe("#TripHeader", () => {
   test("render", () => {
-    const wrapper = shallow(<TripHeader trips={trips} />);
+    const wrapper = shallow(<TripHeader list={trips} />);
 
     expect(wrapper).toMatchSnapshot();
   });
