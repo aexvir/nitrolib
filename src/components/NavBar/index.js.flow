@@ -2,9 +2,9 @@
 import * as React from "react";
 
 import type { Modal } from "../../consts/modals";
+import type { StarredItem } from "../../records/Starred";
 
 type Props = {|
-  starred: React.Node,
   chat: React.Node,
   subscription: React.Node,
   portal: string,
@@ -12,6 +12,7 @@ type Props = {|
   onSetModal: (modal: Modal) => void,
   onSaveLanguage: (lang: string) => void,
   onSelectTrip: (bid: string) => void,
+  onSelectStarred: (item: StarredItem) => void,
   onLogoClick: (ev: SyntheticMouseEvent<HTMLAnchorElement>) => void,
   // defaulted
   headerLinks?: React.Node, // null

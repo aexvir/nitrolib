@@ -5,7 +5,6 @@ import { action } from "@storybook/addon-actions";
 
 import NavBar from "../src/components/NavBar";
 import HeaderLinks from "../src/components/HeaderLinks";
-import Starred from "../src/components/Starred";
 import withData from "./decorators/withData";
 
 storiesOf("NavBar", module)
@@ -24,12 +23,12 @@ storiesOf("NavBar", module)
       subscription={<h1>Subscription</h1>}
       debug={<h1>Debug</h1>}
       portal=""
-      starred={<Starred positionMenuDesktop={150} positionMenuTablet={0} />}
       onOpenFaq={action("Open FAQ")}
       onSetModal={action("Set modal")}
       onLogoClick={action("Click logo")}
       onSaveLanguage={action("Save language")}
       onSelectTrip={action("Select trip")}
+      onSelectStarred={action("Select starred")}
     />
   ))
   .add("inverted", () => (
@@ -45,7 +44,6 @@ storiesOf("NavBar", module)
       chat={<h1>Chat</h1>}
       subscription={<h1>Subscription</h1>}
       debug={<h1>Debug</h1>}
-      starred={<span>Starred</span>}
       inverted
       portal=""
       onOpenFaq={action("Open FAQ")}
@@ -53,6 +51,7 @@ storiesOf("NavBar", module)
       onSetModal={action("Set modal")}
       onSaveLanguage={action("Save language")}
       onSelectTrip={action("Select trip")}
+      onSelectStarred={action("Select starred")}
     />
   ))
   .add("inverted", () => (
@@ -68,7 +67,6 @@ storiesOf("NavBar", module)
       chat={<h1>Chat</h1>}
       subscription={<h1>Subscription</h1>}
       debug={<h1>Debug</h1>}
-      starred={<span>Starred</span>}
       inverted
       portal=""
       onOpenFaq={action("Open FAQ")}
@@ -76,5 +74,6 @@ storiesOf("NavBar", module)
       onSetModal={action("Set modal")}
       onSaveLanguage={action("Save language")}
       onSelectTrip={action("Select trip")}
+      onSelectStarred={action("Select starred")}
     />
   ));

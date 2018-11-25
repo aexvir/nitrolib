@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`#Starred render closed 1`] = `
-<Toggle>
-  [Function]
-</Toggle>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;
 
 exports[`#Starred render open 1`] = `

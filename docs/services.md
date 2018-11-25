@@ -278,7 +278,16 @@ import InitStarred from "@kiwicom/nitro/lib/components/InitStarred";
 
 **Types:**
 ```js
+type Args = {|
+  starredList: Array<StarredItem>,
+  onRemoveStarred: (arg: number) => void,
+  onAddStarred: (arg: StarredItem) => void,
+  onClearStarred: () => void,
+|};
 
+type Props = {|
+  children: (args: Args) => React.Node,
+|};
 ```
 
 

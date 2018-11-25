@@ -18,6 +18,7 @@ import Menu from "./components/Menu";
 import Logo from "./components/Logo";
 import Currency from "../Currency";
 import type { Modal } from "../../consts/modals";
+import type { StarredItem } from "../../records/Starred";
 import marginMixin from "./styles/marginMixin";
 import Starred from "../Starred";
 
@@ -82,6 +83,7 @@ type Props = {|
   onSetModal: (modal: Modal) => void,
   onSaveLanguage: (lang: string) => void,
   onSelectTrip: (bid: string) => void,
+  onSelectStarred: (item: StarredItem) => void,
   onLogoClick: (ev: SyntheticMouseEvent<HTMLAnchorElement>) => void,
   // defaulted
   headerLinks: React.Node,
@@ -100,6 +102,7 @@ const NavBar = ({
   onSetModal,
   onSaveLanguage,
   onSelectTrip,
+  onSelectStarred,
   onLogoClick,
 }: Props) => (
   // $FlowExpected: TODO describe
@@ -139,7 +142,11 @@ const NavBar = ({
               </WrapperChild>
             </Desktop>
             <WrapperChild>
-              <Starred positionMenuDesktop={150} positionMenuTablet={0} />
+              <Starred
+                positionMenuDesktop={150}
+                positionMenuTablet={0}
+                onSelectStarred={onSelectStarred}
+              />
             </WrapperChild>
             <Mobile>
               <WrapperChild>

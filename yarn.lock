@@ -841,6 +841,23 @@
     request-promise "^4.1.1"
     yargs "^8.0.2"
 
+"@kiwicom/nitro@ˆ0.58.1":
+  version "0.60.3"
+  resolved "https://registry.yarnpkg.com/@kiwicom/nitro/-/nitro-0.60.3.tgz#1f26ebd6f338f273cac87ea89f9e82bf33eb04a5"
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    "@kiwicom/orbit-design-tokens" "^0.2.5"
+    chalk "^2.4.1"
+    date-fns "^2.0.0-alpha.20"
+    fs-extra "^7.0.0"
+    i18n-extract "^0.6.3"
+    libphonenumber-js "^1.6.4"
+    mailcheck "^1.1.1"
+    node-fetch "^2.2.1"
+    react-transition-group "^2.5.0"
+    validator "^10.8.0"
+    yargs "^12.0.5"
+
 "@kiwicom/orbit-components@^0.21.0":
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.21.0.tgz#c5f17b24a30e14747df3c3d0b25cdd4bd1e39135"

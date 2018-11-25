@@ -17,6 +17,7 @@ import { BADGE_MAX, MAX_TRIPS } from "./consts";
 import { themeDefault } from "../../records/Theme";
 import type { ThemeProps } from "../../records/Theme";
 import { Consumer as StarredConsumer } from "../../services/starred/context";
+import type { StarredItem } from "../../records/Starred";
 
 const StarredBadge = styled.div`
   background: ${({ theme }: ThemeProps) => theme.orbit.paletteOrangeLight};
@@ -36,9 +37,10 @@ StarredBadge.defaultProps = {
 type Props = {|
   positionMenuDesktop: number,
   positionMenuTablet: number,
+  onSelectStarred: (item: StarredItem) => void,
 |};
 
-const Starred = ({ positionMenuDesktop, positionMenuTablet }: Props) => (
+const Starred = ({ positionMenuDesktop, positionMenuTablet, onSelectStarred }: Props) => (
   <StarredConsumer>
     {starred => {
       const { starredList, onClearStarred, onRemoveStarred } = starred;
@@ -62,6 +64,7 @@ const Starred = ({ positionMenuDesktop, positionMenuTablet }: Props) => (
                   >
                     <StarredList
                       onRemove={onRemoveStarred}
+                      onSelectStarred={onSelectStarred}
                       trips={starredShow}
                       tripsCount={starredCount}
                     />

@@ -3,7 +3,6 @@ import * as React from "react";
 
 import { getItem } from "../../services/utils/store";
 import type { StarredItem } from "../../records/Starred";
-import data from "../Starred/data";
 
 type State = {|
   starredList: Array<StarredItem>,
@@ -28,8 +27,6 @@ class StarredProvider extends React.Component<Props, State> {
   store = getItem("starred");
 
   componentDidMount() {
-    // TODO: remove before implementation
-    localStorage.setItem("starred", JSON.stringify(data));
     if (this.store) {
       this.setState({
         starredList: JSON.parse(this.store),

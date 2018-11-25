@@ -8,7 +8,7 @@ import TimeInWords from "../../DistanceInWords";
 import Price from "../../Price";
 import Translate from "../../Translate";
 import TranslateNode from "../../TranslateNode";
-import StarredSegment from "../StarredTripSegment";
+import StarredSegment from "../StarredSegment";
 import mq from "../../../styles/mq";
 import { getBestPrice, getTransKey } from "../helpers";
 import type { ThemeProps } from "../../../records/Theme";
@@ -25,9 +25,10 @@ type Props = {|
   passengerMulty: boolean,
   price: number,
   onRemove: () => void,
-  priceUpdatedAt: Date | null,
+  priceUpdatedAt: ?Date,
   isValid: boolean,
   created: Date,
+  onSelectStarred: () => void,
 |};
 
 const Added = styled.div`
@@ -136,6 +137,7 @@ const StarredItinerary = ({
   priceUpdatedAt,
   passengerCount,
   passengerMulty,
+  onSelectStarred,
 }: Props) => {
   const lastUpdate = <TimeInWords time={updated} />;
 
@@ -171,7 +173,7 @@ const StarredItinerary = ({
   };
 
   return (
-    <Wrapper>
+    <Wrapper onClick={() => onSelectStarred()}>
       <Added>{getPriceUpdated()}</Added>
       <WrapperInner>
         <Info>

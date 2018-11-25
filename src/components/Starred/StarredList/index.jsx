@@ -13,6 +13,7 @@ type Props = {|
   trips: Array<StarredItem>,
   onRemove: (arg: number) => void,
   tripsCount: number,
+  onSelectStarred: (item: StarredItem) => void,
 |};
 
 const NoFlights = styled.div`
@@ -24,7 +25,7 @@ NoFlights.defaultProps = {
   theme: themeDefault,
 };
 
-const StarredList = ({ trips, onRemove, tripsCount }: Props) => {
+const StarredList = ({ trips, onRemove, tripsCount, onSelectStarred }: Props) => {
   const tripList: React$Node =
     trips &&
     trips.map((trip, index) => {
@@ -38,11 +39,12 @@ const StarredList = ({ trips, onRemove, tripsCount }: Props) => {
           isValid={itemIsValid(trip)}
           passengers={passengers}
           price={lastPrice}
+          onSelectStarred={() => onSelectStarred(trip)}
           journey={journey}
           onRemove={() => onRemove(index)}
           created={createdAt}
           updated={updatedAt}
-          priceUpdatedAt={priceUpdatedAt || null}
+          priceUpdatedAt={priceUpdatedAt}
         />
       );
     });
