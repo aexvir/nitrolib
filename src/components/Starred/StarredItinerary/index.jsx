@@ -6,12 +6,11 @@ import Share from "@kiwicom/orbit-components/lib/icons/Share";
 
 import TimeInWords from "../../DistanceInWords";
 import Price from "../../Price";
-import Time from "../../Time";
 import Translate from "../../Translate";
 import TranslateNode from "../../TranslateNode";
 import StarredSegment from "../StarredTripSegment";
 import mq from "../../../styles/mq";
-import { getTransKey, getBestPrice } from "../helpers";
+import { getBestPrice, getTransKey } from "../helpers";
 import type { ThemeProps } from "../../../records/Theme";
 import type { Journey } from "../../../records/Journey";
 import type { PassengersCount } from "../../../records/Starred";
@@ -26,9 +25,9 @@ type Props = {|
   passengerMulty: boolean,
   price: number,
   onRemove: () => void,
-  priceUpdatedAt: Date,
+  priceUpdatedAt: Date | null,
   isValid: boolean,
-  created: string,
+  created: Date,
 |};
 
 const Added = styled.div`
@@ -138,7 +137,8 @@ const StarredItinerary = ({
   passengerCount,
   passengerMulty,
 }: Props) => {
-  const lastUpdate = <Time time={updated} />;
+  const lastUpdate = <TimeInWords time={updated} />;
+
   const getPriceUpdated = () => {
     if (!isValid) {
       return (
@@ -155,7 +155,6 @@ const StarredItinerary = ({
         <Translate
           t={__("starred.price_update_changed")}
           values={{
-            priceUpdatedAt,
             origPrice: price,
           }}
         />
@@ -184,7 +183,7 @@ const StarredItinerary = ({
               (passengerMulty ? (
                 <Translate t={__("result.total_price")} />
               ) : (
-                <TranslateNode
+                <Translate
                   t={PASSENGERS_COUNT[getTransKey(passengers)]}
                   values={{ count: passengerCount }}
                 />

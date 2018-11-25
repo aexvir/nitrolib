@@ -1,0 +1,13 @@
+// @flow strict
+import * as React from "react";
+
+export type Context = {|
+  starredList: Array<any>,
+  onAddStarred: () => void,
+  onRemoveStarred: () => void,
+  onClearStarred: () => void,
+|};
+
+declare var context: React.Context<Context>;
+
+export const { Consumer, Provider } = context;

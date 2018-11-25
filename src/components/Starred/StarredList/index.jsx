@@ -11,7 +11,7 @@ import type { ThemeProps } from "../../../records/Theme";
 
 type Props = {|
   trips: Array<StarredItem>,
-  onRemove: number => void,
+  onRemove: (arg: number) => void,
   tripsCount: number,
 |};
 
@@ -25,7 +25,7 @@ NoFlights.defaultProps = {
 };
 
 const StarredList = ({ trips, onRemove, tripsCount }: Props) => {
-  const tripList =
+  const tripList: React$Node =
     trips &&
     trips.map((trip, index) => {
       const { id, updatedAt, lastPrice, journey, priceUpdatedAt, form, createdAt } = trip;
@@ -33,7 +33,6 @@ const StarredList = ({ trips, onRemove, tripsCount }: Props) => {
       return (
         <StarredItinerary
           key={id}
-          id={id}
           passengerCount={getSum(passengers)}
           passengerMulty={isMulti(passengers)}
           isValid={itemIsValid(trip)}
@@ -43,10 +42,11 @@ const StarredList = ({ trips, onRemove, tripsCount }: Props) => {
           onRemove={() => onRemove(index)}
           created={createdAt}
           updated={updatedAt}
-          priceUpdatedAt={priceUpdatedAt}
+          priceUpdatedAt={priceUpdatedAt || null}
         />
       );
     });
+
   return tripsCount >= 1 ? (
     tripList
   ) : (

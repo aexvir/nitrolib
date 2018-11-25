@@ -19,7 +19,8 @@ import Logo from "./components/Logo";
 import Currency from "../Currency";
 import type { Modal } from "../../consts/modals";
 import marginMixin from "./styles/marginMixin";
-// import Starred from "../Starred"; FIXME add as a full feature
+import Starred from "../Starred";
+
 // TODO: replace z-index with Orbit token after refactoring all front-end indexes
 
 type Inverted = ThemeProps & {|
@@ -73,7 +74,6 @@ Wrapper.defaultProps = {
 };
 
 type Props = {|
-  starred: React.Node,
   chat: React.Node,
   subscription: React.Node,
   debug: React.Node,
@@ -91,7 +91,6 @@ type Props = {|
 
 const NavBar = ({
   headerLinks,
-  starred,
   chat,
   subscription,
   debug,
@@ -139,7 +138,9 @@ const NavBar = ({
                 </ButtonWrapper>
               </WrapperChild>
             </Desktop>
-            <WrapperChild>{starred}</WrapperChild>
+            <WrapperChild>
+              <Starred positionMenuDesktop={150} positionMenuTablet={0} />
+            </WrapperChild>
             <Mobile>
               <WrapperChild>
                 <Help onOpen={onOpenFaq} inverted={inverted} />

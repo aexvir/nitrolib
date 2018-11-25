@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@kiwicom/nitro": "file:.yalc/@kiwicom/nitro",
+    "@kiwicom/nitro": "ˆ0.58.1",
     "@kiwicom/orbit-design-tokens": "^0.2.5",
     "chalk": "^2.4.1",
     "date-fns": "^2.0.0-alpha.20",

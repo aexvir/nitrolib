@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 import * as React from "react";
 import format from "date-fns/format";
 

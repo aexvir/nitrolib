@@ -1,8 +1,8 @@
 // @flow strict
 import * as React from "react";
 import StarIcon from "@kiwicom/orbit-components/lib/icons/StarFull";
+import styled from "styled-components";
 
-import type { StarredItem } from "../../records/Starred";
 import Button from "../NavBar/primitives/Button";
 import Toggle from "../Toggle";
 import ClickOutside from "../ClickOutside";
@@ -10,104 +10,85 @@ import Desktop from "../Desktop";
 import Mobile from "../Mobile";
 import Translate from "../Translate";
 import TripsContainer from "../TripsContainer";
-import { getItem } from "../../services/storage/storage";
 import StarredHeader from "./StarredHeader";
 import StarredList from "./StarredList";
 import StarredFooter from "./StarredFooter";
-// import data from "./data";
-import { MAX_TRIPS } from "./consts";
+import { BADGE_MAX, MAX_TRIPS } from "./consts";
+import { themeDefault } from "../../records/Theme";
+import type { ThemeProps } from "../../records/Theme";
+import { Consumer as StarredConsumer } from "../../services/starred/context";
+
+const StarredBadge = styled.div`
+  background: ${({ theme }: ThemeProps) => theme.orbit.paletteOrangeLight};
+  color: ${({ theme }: ThemeProps) => theme.orbit.paletteOrangeNormal};
+  border-radius: ${({ theme }: ThemeProps) => theme.orbit.borderRadiusCircle};
+  font-weight: ${({ theme }: ThemeProps) => theme.orbit.fontWeightBold};
+  text-align: center;
+  line-height: 7.5px;
+  padding: 5px;
+  margin-left: 5px;
+`;
+
+StarredBadge.defaultProps = {
+  theme: themeDefault,
+};
 
 type Props = {|
-  onSaveTrip: () => void,
-  onRemoveTrip: number => void,
-  positionMenuDesktop?: number,
-  positionMenuTablet?: number,
+  positionMenuDesktop: number,
+  positionMenuTablet: number,
 |};
 
-type State = {|
-  starred: Array<StarredItem>,
-|};
+const Starred = ({ positionMenuDesktop, positionMenuTablet }: Props) => (
+  <StarredConsumer>
+    {starred => {
+      const { starredList, onClearStarred, onRemoveStarred } = starred;
+      const starredShow = starredList && starredList.slice(0, MAX_TRIPS);
+      const starredCount = starredList && starredList.length;
+      const starredFooter = starredCount >= 1 && <StarredFooter tripsCount={starredCount} />;
 
-class Starred extends React.Component<Props, State> {
-  state = {
-    starred: [],
-  };
-
-  componentDidMount() {
-    // TODO: remove after implementation
-    // localStorage.setItem("starred", JSON.stringify(data));
-    const store = getItem("starred");
-    if (store) {
-      const Items = JSON.parse(store);
-      this.setState({
-        starred: Items,
-      });
-    }
-  }
-
-  clearStore = () => {
-    localStorage.removeItem("starred");
-    this.setState({
-      starred: [],
-    });
-  };
-
-  removeTrip = (index: number) => {
-    const { starred } = this.state;
-    const store = getItem("starred");
-
-    this.setState({
-      starred: starred.filter((_, i) => i !== index),
-    });
-
-    const removeItem = store.slice(0, index - 1).concat(store.slice(index, store.length));
-    localStorage.setItem("starred", JSON.stringify(removeItem));
-  };
-
-  render() {
-    const { onSaveTrip, positionMenuDesktop, positionMenuTablet } = this.props;
-    const { starred } = this.state;
-    const starredList = starred.slice(0, MAX_TRIPS);
-    const starredCount = starredList.length;
-    const starredFooter = starredCount >= 1 && <StarredFooter tripsCount={starredCount} />;
-    return (
-      <Toggle>
-        {({ open, onToggle }) => (
-          <>
-            {open && (
-              <ClickOutside onClickOutside={onToggle}>
-                <TripsContainer
-                  header={
-                    <StarredHeader onClearStorage={this.clearStore} tripsCount={starredCount} />
-                  }
-                  footer={starredFooter}
-                  positionMenuTablet={positionMenuTablet}
-                  positionMenuDesktop={positionMenuDesktop}
-                >
-                  <StarredList
-                    onRemove={this.removeTrip}
-                    trips={starredList}
-                    tripsCount={starredCount}
-                    onSave={onSaveTrip}
-                  />
-                </TripsContainer>
-              </ClickOutside>
-            )}
-            <Desktop>
-              <Button onClick={onToggle} color="secondary">
-                <Translate t={__("starred.starred")} />
-              </Button>
-            </Desktop>
-            <Mobile>
-              <Button onClick={onToggle} color="secondary">
-                <StarIcon color="primary" />
-              </Button>
-            </Mobile>
-          </>
-        )}
-      </Toggle>
-    );
-  }
-}
+      return (
+        <Toggle>
+          {({ open, onToggle }) => (
+            <>
+              {open && (
+                <ClickOutside onClickOutside={onToggle}>
+                  <TripsContainer
+                    header={
+                      <StarredHeader onClearStorage={onClearStarred} tripsCount={starredCount} />
+                    }
+                    footer={starredFooter}
+                    positionMenuTablet={positionMenuTablet}
+                    positionMenuDesktop={positionMenuDesktop}
+                  >
+                    <StarredList
+                      onRemove={onRemoveStarred}
+                      trips={starredShow}
+                      tripsCount={starredCount}
+                    />
+                  </TripsContainer>
+                </ClickOutside>
+              )}
+              <Desktop>
+                <Button onClick={onToggle} color="secondary">
+                  <Translate t={__("starred.starred")} />
+                </Button>
+              </Desktop>
+              <Mobile>
+                <Button onClick={onToggle} color="secondary">
+                  <StarIcon color="primary" />
+                </Button>
+              </Mobile>
+              {starredCount > 0 && (
+                <StarredBadge>
+                  {starredCount > BADGE_MAX ? `${BADGE_MAX}+` : starredCount}
+                </StarredBadge>
+              )}
+            </>
+          )}
+        </Toggle>
+      );
+    }}
+  </StarredConsumer>
+);
 
 export default Starred;

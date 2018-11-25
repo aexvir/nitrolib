@@ -42,7 +42,7 @@ const Wrapper = styled.div`
   background: ${({ theme }: ThemeProps) => theme.orbit.paletteWhite};
   overflow-y: auto;
   height: 100%;
-  transform: ${({ shown }) => (shown ? translate3d(`0`) : translate3d(`480px, 0, 0`))};
+  /* transform: ${({ shown }) => (shown ? translate3d(`0`) : translate3d(`480px, 0, 0`))}; */
   transition: transform ${({ theme }: ThemeProps) => theme.orbit.durationNormal} ease-in-out;
   box-shadow: 0 6px 16px rgba(46, 53, 59, 0.22), 0 1px 3px rgba(0, 0, 0, 0.09);
 

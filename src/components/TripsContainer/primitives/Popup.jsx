@@ -25,11 +25,12 @@ const Popup = styled.div`
   box-shadow: ${({ theme }: ThemeProps) => theme.orbit.boxShadowElevatedLevel1};
 
   ${mq.gtDesktop(css`
-    ${right}: ${({ positionMenuDesktop }) => `${positionMenuDesktop}px`};
+    ${right}: ${({ positionMenuDesktop }) =>
+      positionMenuDesktop ? `${positionMenuDesktop}px` : `0`};
   `)};
 
   ${mq.tablet(css`
-    ${right}: ${({ positionMenuTablet }) => `${positionMenuTablet}px`};
+    ${right}: ${({ positionMenuTablet }) => (positionMenuTablet ? `${positionMenuTablet}px` : `0`)};
   `)};
 
   ${mq.mobile(css`

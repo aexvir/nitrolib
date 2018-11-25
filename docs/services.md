@@ -11,6 +11,7 @@ Located in `@kiwicom/nitro/lib/services/<service>`.
 * [intl](#intl)
 * [inverted](#inverted)
 * [log](#log)
+* [starred](#starred)
 
 ## Contexts
 
@@ -244,3 +245,40 @@ export const { Provider, Consumer } = context;
 ```
 
 _TODO_
+
+### Starred
+
+**Import:**
+```js
+import { Consumer, Provider } from "@kiwicom/nitro/lib/services/starred/context";
+```
+
+**Types:**
+```js
+export type Context = {|
+  starredList: Array<any>,
+  onAddStarred: () => void,
+  onRemoveStarred: () => void,
+  onClearStarred: () => void,
+|};
+
+declare var context: React.Context<Context>;
+
+export const { Consumer, Provider } = context;
+```
+
+
+
+### InitStarred
+
+**Import:**
+```js
+import InitStarred from "@kiwicom/nitro/lib/components/InitStarred";
+```
+
+**Types:**
+```js
+
+```
+
+
