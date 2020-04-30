@@ -20,8 +20,9 @@
     "fixtures": "node ./bin/nitro.js keys 'src/**/*.{js,jsx}' && yarn fetch && node ./etc/fetchFixtures.js",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook -o dist-storybook",
-    "prepare": "rimraf lib && run-p test lint typecheck && yarn build",
-    "localsync": "rimraf lib && yarn build && yalc push"
+    "prepare": "yarn run snyk-protect && rimraf lib && run-p test lint typecheck && yarn build",
+    "localsync": "rimraf lib && yarn build && yalc push",
+    "snyk-protect": "snyk protect"
   },
   "keywords": [
     "react",
@@ -51,7 +52,8 @@
     "node-fetch": "^2.3.0",
     "react-transition-group": "^2.5.0",
     "validator": "^10.9.0",
-    "yargs": "^12.0.5"
+    "yargs": "^12.0.5",
+    "snyk": "^1.316.1"
   },
   "peerDependencies": {
     "@kiwicom/orbit-components": "^0.21.1",
@@ -125,5 +127,6 @@
     "renamer": "^1.1.0",
     "rimraf": "^2.6.2",
     "styled-components": "^4.1.1"
-  }
+  },
+  "snyk": true
 }
